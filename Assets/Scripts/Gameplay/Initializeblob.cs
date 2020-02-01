@@ -12,8 +12,17 @@ public class Initializeblob : MonoBehaviour
     {
         for (var i=0; i<blobs; i++)
         {
-            controller.CreateBlob();
+            controller.CreateBlob(false);
+        }
+        controller.CalcJoints();
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //controller.Bisect();
         }
     }
-   
+
 }

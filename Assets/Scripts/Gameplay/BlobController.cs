@@ -9,9 +9,10 @@ public class BlobController : MonoBehaviour
     public GameObject blobPrefab;
 
     public Transform model;
-
-    [HideInInspector]
+    
     public BlobController parent;
+
+    public GameObject item;
 
     [SerializeField]
     List<BlobController> _children = new List<BlobController>();
@@ -182,11 +183,6 @@ public class BlobController : MonoBehaviour
     {
         get
         {
-            BlobController root = this;
-            while (root.parent != null)
-            {
-                root = parent;
-            }
             var que = new Queue<BlobController>();
             que.Enqueue(root);
             var count = 0;
@@ -221,16 +217,24 @@ public class BlobController : MonoBehaviour
         }
     }
 
+    public BlobController root
+    {
+        get
+        {
+            BlobController blob = this;
+            while (blob.parent != null)
+            {
+                blob = blob.parent;
+            }
+            return blob;
+        }
+    }
+
     // Amount of levels in the tree;
     public int TotalLevel
     {
         get
         {
-            BlobController root = this;
-            while (root.parent != null)
-            {
-                root = parent;
-            }
             var stack = new Stack<BlobController>();
             stack.Push(root);
             var count = 0;
@@ -248,6 +252,10 @@ public class BlobController : MonoBehaviour
         }
     }
 
+    public void AddChild(BlobController child)
+    {
+        _children.Add(child);
+    }
 
     public bool HasSpringTo(BlobController other)
     {
@@ -269,6 +277,7 @@ public class BlobController : MonoBehaviour
         spring.dampingRatio = damping;
         spring.autoConfigureDistance = false;
         spring.distance = distance;
+        Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), other.GetComponent<CircleCollider2D>(), true);
     }
 
     public void Inherit(BlobController other)
@@ -286,25 +295,142 @@ public class BlobController : MonoBehaviour
         transform.parent = other.transform;
     }
 
-    void CalcJoints()
+    public void ParentObject(GameObject obj)
     {
-        var blobs = new Queue<BlobController>();
-        var childless = new Queue<BlobController>();
-        children.ForEach(blob => blobs?.Enqueue(blob));
-        while (blobs.Count > 0)
+        if (item != null)
         {
-            var blob = blobs.Dequeue();
-            if (blob.Count == 0)
+            var blobs = new Queue<BlobController>();
+            blobs.Enqueue(root);
+            while (blobs.Count > 0)
             {
-                childless.Enqueue(blob);
+                var cur = blobs.Dequeue();
+                if (cur.Count > 0)
+                {
+                    foreach (var child in children) 
+                    {
+                        if (child.item == null)
+                        {
+                            child.ParentObject(item);
+                        } else
+                        {
+                            blobs.Enqueue(child);
+                        }
+                    }
+                }
             }
-            blob.children.ForEach(other => blobs?.Enqueue(other));
+        } else
+        {
+            item = obj;
+            obj.transform.parent = transform;
+            obj.transform.localPosition = Vector3.zero;
         }
-
-        //childless.ToList<BlobController>().ForEach(blob => Debug.Log(blob));
     }
 
-    public void CreateBlob()
+    public void CalcJoints()
+    {
+        foreach (var joint in GetComponentsInChildren<SpringJoint2D>().Union(GetComponents<SpringJoint2D>()))
+        {
+            DestroyImmediate(joint);
+        }
+        var blobs = new Queue<BlobController>();
+        var childless = new Queue<BlobController>();
+        blobs.Enqueue(this);
+        while (blobs.Count > 0) {
+            var cur = blobs.Dequeue();
+            if (cur.Count > 0)
+            {
+                cur.children.ForEach(child =>
+                {
+                    cur.CreateSpring(child.GetComponent<Rigidbody2D>());
+                    blobs.Enqueue(child);
+                });
+            } else
+            {
+                childless.Enqueue(cur);
+            }
+        }
+    }
+
+    public void Bisect()
+    {
+        if (Count > 0)
+        {
+            var child = _children.ElementAt(0);
+            _children.RemoveAt(0);
+
+            child.transform.parent = null;
+            child.parent = null;
+
+            root.CalcJoints();
+            child.CalcJoints();
+
+            var force = Random.insideUnitCircle.normalized;
+            root.GetComponent<Rigidbody2D>().AddForce(force);
+            child.GetComponent<Rigidbody2D>().AddForce(force * new Vector2(-1, -1));
+
+            var blobs = new Queue<BlobController>();
+            blobs.Enqueue(child);
+            while (blobs.Count > 0)
+            {
+                var cur = blobs.Dequeue();
+                cur.children.ForEach(blob => {
+                    var split = blob.gameObject.GetComponent<BlobSplitInteractible>();
+                    if (split)
+                    {
+                        split.enabled = true;
+                        split.timer = 0f;
+                    }
+                    blobs.Enqueue(blob);
+                });
+            }
+        } else
+        {
+            Kill();
+        }
+    }
+
+    public void Join(BlobController other)
+    {
+        foreach (var split in GetComponentsInChildren<BlobSplitInteractible>())
+        {
+            split.enabled = false;
+        }
+        GetComponent<BlobSplitInteractible>().enabled = false;
+        var blobs = new Stack<BlobController>();
+        blobs.Push(other.root);
+        while (blobs.Count > 0)
+        {
+            var cur = blobs.Pop();
+            if (!cur.IsFull)
+            {
+                cur.AddChild(other);
+                break;
+            }
+            else
+            {
+                cur.children.ForEach(child => blobs.Push(child));
+            }
+        }
+        other.root.CalcJoints();
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var interactible = collision.gameObject.GetComponent<IBlobInteractible>();
+        if (interactible != null)
+        {
+            interactible.OnCollideWithBlob(this);
+        }
+    }
+
+    public void Kill()
+    {
+        Debug.Log("Die");
+        //Destroy(this);
+    }
+
+    public void CreateBlob(bool createJoint = true)
     {
         if (this.IsFull)
         {
@@ -319,18 +445,34 @@ public class BlobController : MonoBehaviour
         var blob = newObj.AddComponent<BlobController>();
         var collider = newObj.AddComponent<CircleCollider2D>();
         var body = newObj.AddComponent<Rigidbody2D>();
+        var split = newObj.AddComponent<BlobSplitInteractible>();
         var newModel = Instantiate(blobPrefab, blob.transform);
+        split.enabled = false;
         blob.model = newModel.transform;
 
         blob.Inherit(this);
         
         newObj.transform.localPosition = Random.insideUnitCircle.normalized;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;
-        _children.Add(blob);
-        CreateSpring(body);
+        AddChild(blob);
+        if (createJoint)
+        {
+            CreateSpring(body);
+        }
+    }
 
+    public override bool Equals(object other)
+    {
+        if (other is BlobController)
+        {
+            return (other as BlobController).gameObject.name == gameObject.name;
+        }
+        return base.Equals(other);
+    }
 
-        CalcJoints();
+    public override int GetHashCode()
+    {
+        return this.name.GetHashCode();
     }
 
     // Start is called before the first frame update
@@ -345,6 +487,12 @@ public class BlobController : MonoBehaviour
         if (CanMove && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01f)
         {
             GetComponent<Rigidbody2D>().AddTorque(Input.GetAxis("Horizontal") * force);
+        }
+        if (item != null && Input.GetButtonDown("Fire1")) {
+            foreach (var component in GetComponentsInChildren<IBlobInteractible>())
+            {
+                component.OnAction(this);
+            }
         }
         if (model != null)
         {
