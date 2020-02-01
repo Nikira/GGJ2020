@@ -27,6 +27,11 @@ public class BlobSplitInteractible : MonoBehaviour, IBlobInteractible
         }
     }
 
+    public void OnHoldAction(BlobController blob)
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {

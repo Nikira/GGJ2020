@@ -488,12 +488,18 @@ public class BlobController : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().AddTorque(-Input.GetAxis("Horizontal") * force);
         }
-        if (item != null && Input.GetButtonDown("Fire1")) {
-            foreach (var component in GetComponentsInChildren<IBlobInteractible>())
+        if (item != null) {
+            var component = item.GetComponent<IBlobInteractible>();
+            if (Input.GetButtonDown("Fire1"))
             {
                 component.OnAction(this);
             }
+            else if (Input.GetButton("Fire1"))
+            {
+                component.OnHoldAction(this);
+            }
         }
+
         if (model != null)
         {
             var val = ballSize + Mathf.Max(Level - 1, 0) * ballGrowth;

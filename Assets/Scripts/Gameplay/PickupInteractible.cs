@@ -23,6 +23,11 @@ public class PickupInteractible : MonoBehaviour, IBlobInteractible
         picked = true;
     }
 
+    public void OnHoldAction(BlobController blob)
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
