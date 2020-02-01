@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LegInteractible : MonoBehaviour, IBlobInteractible
 {
+    [HideInInspector]
     public bool picked = false;
     public BlobController parent;
     public Transform chaseTransform;

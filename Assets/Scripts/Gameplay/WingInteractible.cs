@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WingInteractible : MonoBehaviour, IBlobInteractible
 {
+    [HideInInspector]
     public bool picked = false;
     public BlobController parent;
     public Transform chaseTransform;
