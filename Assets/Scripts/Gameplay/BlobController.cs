@@ -259,6 +259,11 @@ public class BlobController : MonoBehaviour
     public void AddChild(BlobController child)
     {
         _children.Add(child);
+        child.parent = this;
+        child.transform.parent = transform;
+        child.name = $"{gameObject.name}{children.Count}";
+
+        child.Inherit(this);
     }
 
     public bool HasSpringTo(BlobController other)
@@ -295,6 +300,9 @@ public class BlobController : MonoBehaviour
         this.blobPrefab = other.blobPrefab;
         this.ballGrowth = other.ballGrowth;
         this.ballSize = other.ballSize;
+        this.horizontalCtrl = other.horizontalCtrl;
+        this.fireButton = other.fireButton;
+        this.jumpButton = other.jumpButton;
 
         transform.parent = other.transform;
     }
@@ -332,13 +340,18 @@ public class BlobController : MonoBehaviour
 
     public void CalcJoints()
     {
-        foreach (var joint in GetComponentsInChildren<SpringJoint2D>().Union(GetComponents<SpringJoint2D>()))
+        
+        foreach (var joint in root.GetComponentsInChildren<SpringJoint2D>())
         {
             Destroy(joint);
         }
+        foreach(var spring in root.GetComponents<SpringJoint2D>())
+        {
+            Destroy(spring);
+        }
         var blobs = new Queue<BlobController>();
         var childless = new Queue<BlobController>();
-        blobs.Enqueue(this);
+        blobs.Enqueue(root);
         while (blobs.Count > 0) {
             var cur = blobs.Dequeue();
             if (cur.Count > 0)
@@ -407,15 +420,15 @@ public class BlobController : MonoBehaviour
             var cur = blobs.Pop();
             if (!cur.IsFull)
             {
-                cur.AddChild(other);
-                break;
+                cur.AddChild(this);
+                cur.CalcJoints();
+                return;
             }
             else
             {
                 cur.children.ForEach(child => blobs.Push(child));
             }
         }
-        other.root.CalcJoints();
     }
 
 
@@ -453,8 +466,6 @@ public class BlobController : MonoBehaviour
         var newModel = Instantiate(blobPrefab, blob.transform);
         split.enabled = false;
         blob.model = newModel.transform;
-
-        blob.Inherit(this);
         
         newObj.transform.localPosition = Random.insideUnitCircle.normalized;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;

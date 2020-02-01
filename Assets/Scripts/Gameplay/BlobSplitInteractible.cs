@@ -23,7 +23,7 @@ public class BlobSplitInteractible : MonoBehaviour, IBlobInteractible
             {
                 split.enabled = false;
             }
-            Debug.Log("JOIN");
+            blob.root.Join(other.root);
         }
     }
 

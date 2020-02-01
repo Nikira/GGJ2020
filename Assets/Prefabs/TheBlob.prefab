@@ -47,9 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119da8f300ef9e64fa2fbe7651bd644a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blobPrefab: {fileID: 2021472557928529177}
+  blobPrefab: {fileID: 6621663661217807052}
   model: {fileID: 4487389509815470054, guid: c0ce4128a3dd3494e8d33d4a52ba58c5, type: 3}
   parent: {fileID: 0}
+  item: {fileID: 0}
+  jumpButton: Jump_P1
+  horizontalCtrl: Horizontal_P1
+  fireButton: Fire1_P1
   _children: []
   _health: 100
   _size: 0.2
@@ -188,6 +192,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0ce4128a3dd3494e8d33d4a52ba58c5, type: 3}
+--- !u!1 &6621663661217807052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7733268739122074969, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+    type: 3}
+  m_PrefabInstance: {fileID: 3510264497497370517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1076534092794914931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4487389509815470054, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
