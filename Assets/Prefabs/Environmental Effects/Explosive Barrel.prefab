@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9103121577404342118
+--- !u!1 &603816779959893869
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,75 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9103121577404342112}
-  - component: {fileID: 9103121577404342113}
-  - component: {fileID: 8201886615400477339}
-  - component: {fileID: 1130937572}
+  - component: {fileID: 603816779959893866}
+  - component: {fileID: 603816779959893865}
+  - component: {fileID: 603816779959893864}
+  - component: {fileID: 603816779959893871}
+  - component: {fileID: 603816779959893870}
+  - component: {fileID: 496143149}
   m_Layer: 0
-  m_Name: BirdController
+  m_Name: Explosive Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9103121577404342112
+--- !u!4 &603816779959893866
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9103121577404342118}
+  m_GameObject: {fileID: 603816779959893869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8052267, y: -0.7164063, z: -0.19252692}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.869, y: -1.471, z: -1821.6526}
+  m_LocalScale: {x: 2.05, y: 2.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9103121577404342113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9103121577404342118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05331877922d8e842ab1de7d98ae7263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  birdPrefab: {fileID: 6676013781819382016, guid: 37ced18bb54f506449cd2f771b73ae40,
-    type: 3}
-  amountOfBirds: 3
-  birds: []
-  birdState: 0
-  fleeForce: 5
-  returnForce: 1
-  hoverForce: 6
-  tweets:
-  - {fileID: 8300000, guid: a9dbeca7e63318c4bb8facf4358759b4, type: 3}
-  - {fileID: 8300000, guid: 9011044ef47e4654e8b4ddc275268ace, type: 3}
-  - {fileID: 8300000, guid: 858ea92ef27492d4b96e99783e107a59, type: 3}
-  - {fileID: 8300000, guid: 40741411af24e7a469138387462d12ea, type: 3}
-  - {fileID: 8300000, guid: f1395a85cf572f141ac013d34210f875, type: 3}
-  audioFlutter:
-  - {fileID: 8300000, guid: a104e37302945b9468fb122d79fd7018, type: 3}
-  - {fileID: 8300000, guid: aee8443f8dc60f54e944a3cb94ffdb90, type: 3}
-  - {fileID: 8300000, guid: 061b9f91fb7d7af46af22111830d3d93, type: 3}
-  audioflap:
-  - {fileID: 8300000, guid: ab2b7aff8d0f4cb409f50badb7bffddf, type: 3}
-  - {fileID: 8300000, guid: 121ae23fb37f9064fabac36aeb3556a6, type: 3}
-  audioThump:
-  - {fileID: 8300000, guid: 317252cc2bfef844cb50f432901d922f, type: 3}
-  - {fileID: 8300000, guid: e43cf5a534e4f3748acb6bb2d624779d, type: 3}
-  - {fileID: 8300000, guid: 76366ff2da7d7bf489e0622d7175a8fd, type: 3}
---- !u!212 &8201886615400477339
+--- !u!212 &603816779959893865
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9103121577404342118}
+  m_GameObject: {fileID: 603816779959893869}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -106,33 +71,87 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1287877125
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &1130937572
+--- !u!61 &603816779959893864
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603816779959893869}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
+--- !u!114 &603816779959893871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603816779959893869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ac74244b0dcbf40ad11c92d1d430b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExplosionForce: 5
+  ExplosionRadius: 10
+  exploding: 0
+--- !u!114 &603816779959893870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603816779959893869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6294319f6026ab488bae15194f94033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionSound: {fileID: 8300000, guid: 1e3dc873fcbd85a4a817c47c4caf7bde, type: 3}
+--- !u!82 &496143149
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9103121577404342118}
+  m_GameObject: {fileID: 603816779959893869}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
