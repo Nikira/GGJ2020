@@ -47,8 +47,7 @@ MonoBehaviour:
     type: 3}
   amountOfBirds: 3
   birds: []
-  flee: 0
-  hoverTimer: 3
+  birdState: 0
   fleeForce: 5
   returnForce: 1
-  hoverForce: 2
+  hoverForce: 6
