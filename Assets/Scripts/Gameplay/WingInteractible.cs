@@ -16,7 +16,7 @@ public class WingInteractible : MonoBehaviour, IBlobInteractible
 
     public void OnAction(BlobController blob)
     {
-        var dir = new Vector3(Input.GetAxis("Horizontal") / 2f, 1f, 0f);
+        var dir = new Vector3(Input.GetAxis(blob.horizontalCtrl) / 2f, 1f, 0f);
         var vec = (dir).normalized * force;
         blob.GetComponent<Rigidbody2D>().AddForce(vec);
     }
