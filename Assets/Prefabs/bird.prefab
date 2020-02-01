@@ -242,6 +242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentController: {fileID: 0}
+  pickUp: {fileID: 8560444543348070981, guid: 4e642652088e84742ad80f1937822058, type: 3}
+  pickedUp: 0
   isFlying: 0
 --- !u!61 &6885360825355310923
 BoxCollider2D:

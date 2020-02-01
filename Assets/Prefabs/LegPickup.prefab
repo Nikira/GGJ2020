@@ -72,7 +72,7 @@ MonoBehaviour:
   chaseTransform: {fileID: 1198592824713889055}
   force: -500
   offsetPos: {x: 0, y: 0, z: -10}
-  offsetAngle: {x: 0, y: 0, z: 0}
+  offsetAngle: {x: 0, y: 0, z: 3.4}
 --- !u!70 &1198592824543286493
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 1198592824713889054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1198592824543286492}
   m_RootOrder: 0
