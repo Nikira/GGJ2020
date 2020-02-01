@@ -21,9 +21,10 @@ public class BirdControllerScript : MonoBehaviour
     Vector2 fleeDirection;
     Vector2 returnDirection;
 
-    //public AudioSource birdSoundEmitter;
     public AudioClip[] tweets;
     public AudioClip[] audioFlutter;
+    public AudioClip[] audioflap;
+    public AudioClip[] audioThump;
 
     // Start is called before the first frame update
     void Start()
@@ -31,11 +32,15 @@ public class BirdControllerScript : MonoBehaviour
 
         fleeDirection = new Vector2(0, 5);
         birds = new List<GameObject>();
+
         
         for(int i = 0; i < amountOfBirds; i++)
         {
             birds.Add(Instantiate(birdPrefab, new Vector2(transform.position.x + i * 0.2f, transform.position.y), Quaternion.identity));
+            birds[i].GetComponent<BirdBehaviourScript>().parentController = this;
         }
+
+        StartCoroutine(RandomTweets());
     }
 
     // Update is called once per frame
@@ -57,7 +62,6 @@ public class BirdControllerScript : MonoBehaviour
                 BirdsReturn();
                 break;
         }
-
     }
 
     // Apply force towards origin
@@ -96,6 +100,7 @@ public class BirdControllerScript : MonoBehaviour
         {
             Rigidbody2D birdBody = bird.GetComponent<Rigidbody2D>();
             birdBody.AddForce(Vector2.up * hoverForce, ForceMode2D.Impulse);
+            bird.GetComponent<BirdBehaviourScript>().EmitSound(audioflap[(int)Random.Range (0, audioflap.Length -1)], bird.GetComponent<AudioSource>());
         }
     }
 
@@ -109,6 +114,12 @@ public class BirdControllerScript : MonoBehaviour
         if(birdState > State.returning)
         {
             birdState = State.resting;
+        
+        foreach (GameObject bird in birds)
+        {
+            bird.GetComponent<BirdBehaviourScript>().isFlying = true;
+        }
+
         }
 
         yield return new WaitForSeconds(3f);
@@ -130,5 +141,13 @@ public class BirdControllerScript : MonoBehaviour
             BirdsFlap();
             StartCoroutine(FlapTimer());
         }
+    }
+
+    IEnumerator RandomTweets()
+    {
+        yield return new WaitForSeconds(Random.Range(0.5f, 4));
+        if (birdState == State.resting)
+        GetComponent<AudioSource>().PlayOneShot(tweets[(int)Random.Range (0, tweets.Length -1)]);
+        StartCoroutine(RandomTweets());
     }
 }
