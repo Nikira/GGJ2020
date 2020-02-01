@@ -21,11 +21,17 @@ public class BirdControllerScript : MonoBehaviour
     Vector2 fleeDirection;
     Vector2 returnDirection;
 
+    public List<AudioClip> audioTweets;
+    public List<AudioClip> audioFlutter;
+    AudioSource birdSoundEmitter;
+
     // Start is called before the first frame update
     void Start()
     {
         fleeDirection = new Vector2(0, 5);
         birds = new List<GameObject>();
+        birdSoundEmitter = GetComponent<AudioSource>();
+        
 
         for(int i = 0; i < amountOfBirds; i++)
         {
