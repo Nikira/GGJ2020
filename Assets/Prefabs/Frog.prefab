@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642949584658548113}
   - component: {fileID: 8466429982054800316}
+  - component: {fileID: 6725941808474290702}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -81,3 +82,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6725941808474290702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6034244851999981581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ce28f5f8d451d4d9c48b85d5f73faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
