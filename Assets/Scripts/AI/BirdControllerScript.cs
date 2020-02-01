@@ -14,7 +14,7 @@ public class BirdControllerScript : MonoBehaviour
 
 
     [Header("Forces applied during different states")]
-    public float fleeForce = 2f;
+    public float fleeForce = 1.8f;
     public float returnForce = 2f;
     public float hoverForce = 5f;
 
