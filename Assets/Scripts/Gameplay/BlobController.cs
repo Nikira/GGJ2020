@@ -344,12 +344,16 @@ public class BlobController : MonoBehaviour
     {
         if (CanMove && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01f)
         {
-            GetComponent<Rigidbody2D>().AddTorque(Input.GetAxis("Horizontal") * force);
+            GetComponent<Rigidbody2D>().AddTorque(-Input.GetAxis("Horizontal") * force);
         }
         if (model != null)
         {
             var val = ballSize + Mathf.Max(Level - 1, 0) * ballGrowth;
             model.localScale = new Vector3(val, val, val);
+        }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 6.0f);
         }
     }
 }
