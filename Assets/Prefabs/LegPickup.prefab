@@ -50,7 +50,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5c2678a71b146f94fa118434500afb52, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
   picked: 0
   parent: {fileID: 0}
   chaseTransform: {fileID: 1198592824713889055}
+  legFriction: {fileID: 0}
   force: -500
   offsetPos: {x: 0, y: 0, z: -10}
   offsetAngle: {x: 0, y: 0, z: 45}

@@ -8,6 +8,7 @@ public class LegInteractible : MonoBehaviour, IBlobInteractible
     public bool picked = false;
     public BlobController parent;
     public Transform chaseTransform;
+    public PhysicsMaterial2D legFriction;
 
     public float force = 10f;
 
@@ -30,11 +31,12 @@ public class LegInteractible : MonoBehaviour, IBlobInteractible
 
     public void OnAction(BlobController blob)
     {
+        /*
         if (!IsGrounded) return;
         var diff = -(transform.position - blob.root.transform.position).normalized;
         var vec = new Vector3(diff.x * force, diff.y * force, 0f);
         blob.GetComponent<Rigidbody2D>().AddForce(vec);
-        Debug.Log($"Applying force {vec.ToString()}");
+        Debug.Log($"Applying force {vec.ToString()}");*/
     }
 
     public void OnCollideWithBlob(BlobController other)
@@ -51,6 +53,8 @@ public class LegInteractible : MonoBehaviour, IBlobInteractible
         {
             Destroy(collision);
         }
+
+        other.GetComponent<Rigidbody2D>().sharedMaterial = legFriction;
         parent = other;
         picked = true;
     }

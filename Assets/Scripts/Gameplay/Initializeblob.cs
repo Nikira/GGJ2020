@@ -14,8 +14,10 @@ public class Initializeblob : MonoBehaviour
         for (var i=0; i<blobs; i++)
         {
             controller.CreateBlob(false);
+            controller2.CreateBlob(false);
         }
         controller.CalcJoints();
+        controller2.CalcJoints();
     }
 
     void Update()

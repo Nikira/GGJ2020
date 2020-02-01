@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class BlobController : MonoBehaviour
 {
+    private bool bisected = false;
+
+    private float holdTimer = 0f;
 
     public GameObject blobPrefab;
 
@@ -221,6 +224,20 @@ public class BlobController : MonoBehaviour
         }
     }
 
+    public List<BlobController> GetEveryConnectedBlob()
+    {
+        var stack = new Stack<BlobController>();
+        var list = new List<BlobController>();
+        stack.Push(root);
+        while (stack.Count > 0)
+        {
+            var cur = stack.Pop();
+            list.Add(cur);
+            cur.children.ForEach(child => stack.Push(child));
+        }
+        return list;
+    }
+
     public BlobController root
     {
         get
@@ -256,14 +273,21 @@ public class BlobController : MonoBehaviour
         }
     }
 
-    public void AddChild(BlobController child)
+    public void AddChild(BlobController child, bool createJoint = true)
     {
+        GetEveryConnectedBlob().ForEach(blob => blob.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll);
         _children.Add(child);
         child.parent = this;
         child.transform.parent = transform;
         child.name = $"{gameObject.name}{children.Count}";
 
         child.Inherit(this);
+
+        if (createJoint)
+        {
+            CreateSpring(child.GetComponent<Rigidbody2D>());
+        }
+        GetEveryConnectedBlob().ForEach(blob => blob.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None);
     }
 
     public bool HasSpringTo(BlobController other)
@@ -378,8 +402,16 @@ public class BlobController : MonoBehaviour
             child.transform.parent = null;
             child.parent = null;
 
-            root.CalcJoints();
-            child.CalcJoints();
+            //root.CalcJoints();
+            foreach (var joint in root.GetComponents<SpringJoint2D>())
+            {
+                if (joint.connectedBody.GetComponent<BlobController>() == child)
+                {
+                    Destroy(joint);
+                    break;
+                }
+            }
+            //child.CalcJoints();
 
             var force = Random.insideUnitCircle.normalized;
             root.GetComponent<Rigidbody2D>().AddForce(force);
@@ -421,7 +453,7 @@ public class BlobController : MonoBehaviour
             if (!cur.IsFull)
             {
                 cur.AddChild(this);
-                cur.CalcJoints();
+                //cur.CalcJoints();
                 return;
             }
             else
@@ -469,11 +501,7 @@ public class BlobController : MonoBehaviour
         
         newObj.transform.localPosition = Random.insideUnitCircle.normalized;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;
-        AddChild(blob);
-        if (createJoint)
-        {
-            CreateSpring(body);
-        }
+        AddChild(blob, createJoint);
     }
 
     public override bool Equals(object other)
@@ -515,6 +543,23 @@ public class BlobController : MonoBehaviour
             }
         }
 
+        if (parent == null)
+        {
+            if (Input.GetButton(jumpButton) && !bisected)
+            {
+                holdTimer += Time.deltaTime;
+                if (holdTimer > 1f)
+                {
+                    Bisect();
+                    bisected = true;
+                }
+            } else if (Input.GetButtonUp(jumpButton))
+            {
+                bisected = false;
+                holdTimer = 0f;
+            }
+        }
+
         if (model != null)
         {
             var val = ballSize + Mathf.Max(Level - 1, 0) * ballGrowth;
@@ -522,7 +567,7 @@ public class BlobController : MonoBehaviour
         }
         if (Input.GetButtonDown(jumpButton))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 15.0f);
+            //GetComponent<Rigidbody2D>().AddForce(Vector3.up * 15.0f);
         }
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3136205769425979236}
   - component: {fileID: 2442688924331384108}
   - component: {fileID: 313896018902644338}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TheBlob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +175,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4487389509815470054, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487389509815470054, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487389509815470054, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5196589007941925086, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
         type: 3}
       propertyPath: m_Enabled
@@ -189,6 +204,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733268739122074969, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0ce4128a3dd3494e8d33d4a52ba58c5, type: 3}
