@@ -124,7 +124,7 @@ public class BirdControllerScript : MonoBehaviour
     IEnumerator FlapTimer()
     {
         Debug.Log("Starting flaptimer");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(Random.Range(0.3f, 0.6f));
         if (birdState != State.resting)
         {
             BirdsFlap();
