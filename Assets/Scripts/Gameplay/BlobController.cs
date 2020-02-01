@@ -16,7 +16,7 @@ public class BlobController : MonoBehaviour
 
     public string jumpButton = "Jump_P1";
     public string horizontalCtrl = "Horizontal_P1";
-    public string fireButton = "Fire_P1";
+    public string fireButton = "Fire1_P1";
 
     [SerializeField]
     List<BlobController> _children = new List<BlobController>();

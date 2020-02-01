@@ -20,10 +20,7 @@ public class Initializeblob : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //controller.Bisect();
-        }
+        
     }
 
 }
