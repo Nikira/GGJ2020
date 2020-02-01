@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrogBehaviour : MonoBehaviour
+public class FrogBehaviour : MonoBehaviour, IBlobInteractible
 {
     Rigidbody2D FrogBody;
+
+    public GameObject pickUp;
+    public bool pickedUp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +26,25 @@ public class FrogBehaviour : MonoBehaviour
         FrogHop();
         yield return new WaitForSeconds(Random.Range(1f, 5f));
         StartCoroutine(FrogHopInterval());
+    }
+
+    public void OnCollideWithBlob(BlobController blob)
+    {
+        if (pickedUp) return;
+        var pickup = Instantiate(pickUp, transform);
+        pickup.GetComponent<LegInteractible>().OnCollideWithBlob(blob);
+
+        Destroy(gameObject);
+        pickedUp = true;
+    }
+
+    public void OnAction(BlobController blob)
+    {
+
+    }
+
+    public void OnHoldAction(BlobController blob)
+    {
+
     }
 }

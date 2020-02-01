@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdBehaviourScript : MonoBehaviour
+public class BirdBehaviourScript : MonoBehaviour, IBlobInteractible
 {
     public BirdControllerScript parentController; // Initialized by controller
+
+    public GameObject pickUp;
+    public bool pickedUp = false;
 
     public bool isFlying = false;
 
@@ -27,5 +30,25 @@ public class BirdBehaviourScript : MonoBehaviour
             EmitSound(clipToPlay, GetComponent<AudioSource>());
             isFlying = false;
         }
+    }
+
+    public void OnCollideWithBlob(BlobController blob)
+    {
+        if (pickedUp) return;
+        var pickup = Instantiate(pickUp, transform);
+        pickup.GetComponent<WingInteractible>().OnCollideWithBlob(blob);
+
+        Destroy(gameObject);
+        pickedUp = true;
+    }
+
+    public void OnAction(BlobController blob)
+    {
+
+    }
+
+    public void OnHoldAction(BlobController blob)
+    {
+
     }
 }
