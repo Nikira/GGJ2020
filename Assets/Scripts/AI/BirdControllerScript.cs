@@ -7,10 +7,10 @@ public class BirdControllerScript : MonoBehaviour
 
     public GameObject birdPrefab;
     public int amountOfBirds;
-    public GameObject[] birds;
+    public List<GameObject> birds;
 
-    public enum state { resting, fleeing, hovering, returning }
-    public state birdState = state.resting;
+    public enum State { resting, fleeing, hovering, returning }
+    public State birdState = State.resting;
 
 
     [Header("Forces applied during different states")]
@@ -25,11 +25,11 @@ public class BirdControllerScript : MonoBehaviour
     void Start()
     {
         fleeDirection = new Vector2(0, 5);
-        birds = new GameObject[amountOfBirds];
+        birds = new List<GameObject>();
 
         for(int i = 0; i < amountOfBirds; i++)
         {
-            birds[i] = Instantiate(birdPrefab, new Vector2(transform.position.x + i * 0.2f, transform.position.y), Quaternion.identity);
+            birds.Add(Instantiate(birdPrefab, new Vector2(transform.position.x + i * 0.2f, transform.position.y), Quaternion.identity));
         }
     }
 
@@ -38,17 +38,17 @@ public class BirdControllerScript : MonoBehaviour
     {
         switch(birdState)
         {
-            case state.resting:
+            case State.resting:
                 break;
-            case state.fleeing:
+            case State.fleeing:
                 BirdsFlee();
                 StartCoroutine(FlapTimer());
                 birdState++;
                 StartCoroutine(StateIterator());// Rotate through the other state
                 break;
-            case state.hovering:
+            case State.hovering:
                 break;
-            case state.returning:
+            case State.returning:
                 BirdsReturn();
                 break;
         }
@@ -58,8 +58,6 @@ public class BirdControllerScript : MonoBehaviour
     // Apply force towards origin
     public void BirdsReturn()
     {
-
-
         foreach (GameObject bird in birds)
         {
             Rigidbody2D birdBody = bird.GetComponent<Rigidbody2D>();
@@ -67,7 +65,7 @@ public class BirdControllerScript : MonoBehaviour
             returnDirection = new Vector2(transform.position.x - bird.transform.position.x, 0);
             returnDirection.Normalize();
             Debug.DrawLine(bird.transform.position, returnDirection);
-            birdBody.AddForce(returnDirection * returnForce /** DistanceToController(bird.transform.position)*/);
+            birdBody.AddForce(returnDirection * returnForce * (DistanceToController(bird.transform.position)*0.5f));
         }
     }
 
@@ -102,13 +100,13 @@ public class BirdControllerScript : MonoBehaviour
 
     IEnumerator StateIterator()
     {
-        if(birdState > state.returning)
+        if(birdState > State.returning)
         {
-            birdState = state.resting;
+            birdState = State.resting;
         }
 
         yield return new WaitForSeconds(3f);
-        if (birdState != state.resting)
+        if (birdState != State.resting)
         {
             birdState++;
             StartCoroutine(StateIterator());
@@ -121,7 +119,7 @@ public class BirdControllerScript : MonoBehaviour
     {
         Debug.Log("Starting flaptimer");
         yield return new WaitForSeconds(0.5f);
-        if (birdState != state.resting)
+        if (birdState != State.resting)
         {
             BirdsFlap();
             StartCoroutine(FlapTimer());

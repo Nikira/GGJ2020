@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class BirdBehaviourScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public BirdControllerScript parentController; // Initialized by controller
 
-    // Update is called once per frame
-    void Update()
+    public void OnDestroy()
     {
-        
+        parentController.birds.Remove(this.gameObject);
     }
 }
