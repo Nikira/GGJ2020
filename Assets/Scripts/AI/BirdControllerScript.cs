@@ -21,12 +21,17 @@ public class BirdControllerScript : MonoBehaviour
     Vector2 fleeDirection;
     Vector2 returnDirection;
 
+    //public AudioSource birdSoundEmitter;
+    public AudioClip[] tweets;
+    public AudioClip[] audioFlutter;
+
     // Start is called before the first frame update
     void Start()
     {
+
         fleeDirection = new Vector2(0, 5);
         birds = new List<GameObject>();
-
+        
         for(int i = 0; i < amountOfBirds; i++)
         {
             birds.Add(Instantiate(birdPrefab, new Vector2(transform.position.x + i * 0.2f, transform.position.y), Quaternion.identity));
@@ -79,6 +84,7 @@ public class BirdControllerScript : MonoBehaviour
             fleeDirection.x = Random.Range(-6, 6);
 
             birdBody.AddForce(fleeDirection * fleeForce, ForceMode2D.Impulse);
+            bird.GetComponent<BirdBehaviourScript>().EmitSound(audioFlutter[(int)Random.Range (0, audioFlutter.Length -1)], bird.GetComponent<AudioSource>());
         }
     }
 
@@ -118,7 +124,7 @@ public class BirdControllerScript : MonoBehaviour
     IEnumerator FlapTimer()
     {
         Debug.Log("Starting flaptimer");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(Random.Range(0.3f, 0.6f));
         if (birdState != State.resting)
         {
             BirdsFlap();

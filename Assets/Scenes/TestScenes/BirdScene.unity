@@ -484,6 +484,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
         type: 3}
+      propertyPath: audioTweets.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioFlutter.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
       propertyPath: hoverForce
       value: 6
       objectReference: {fileID: 0}
@@ -491,6 +501,76 @@ PrefabInstance:
         type: 3}
       propertyPath: birdState
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: tweet1
+      value: 
+      objectReference: {fileID: 8300000, guid: a9dbeca7e63318c4bb8facf4358759b4, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: tweet2
+      value: 
+      objectReference: {fileID: 8300000, guid: af4984408b57fb740bc33aa576c3123d, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: tweet3
+      value: 
+      objectReference: {fileID: 8300000, guid: 858ea92ef27492d4b96e99783e107a59, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: tweet4
+      value: 
+      objectReference: {fileID: 8300000, guid: b6bcacde296490d49b1c5b5365cba645, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: tweet5
+      value: 
+      objectReference: {fileID: 8300000, guid: f1395a85cf572f141ac013d34210f875, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioTweets.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a9dbeca7e63318c4bb8facf4358759b4, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioTweets.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 858ea92ef27492d4b96e99783e107a59, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioTweets.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d96d406434cd4e40a8b8cefc7f441aa, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioTweets.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 25737291fe52cdf44aee3364760e860f, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioTweets.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: f1395a85cf572f141ac013d34210f875, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioFlutter.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: a104e37302945b9468fb122d79fd7018, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioFlutter.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: aee8443f8dc60f54e944a3cb94ffdb90, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: audioFlutter.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 061b9f91fb7d7af46af22111830d3d93, type: 3}
+    - target: {fileID: 9103121577404342113, guid: 02901abb47041c042b2941338e295e2f,
+        type: 3}
+      propertyPath: birdSoundEmitter
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9103121577404342118, guid: 02901abb47041c042b2941338e295e2f,
         type: 3}

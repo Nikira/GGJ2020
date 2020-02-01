@@ -10,4 +10,9 @@ public class BirdBehaviourScript : MonoBehaviour
     {
         parentController.birds.Remove(this.gameObject);
     }
+
+    public void EmitSound(AudioClip _tweets, AudioSource _birdSource)
+    {
+        _birdSource.PlayOneShot(_tweets);
+    }
 }

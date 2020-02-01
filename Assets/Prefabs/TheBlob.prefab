@@ -51,11 +51,11 @@ MonoBehaviour:
   parent: {fileID: 0}
   _children: []
   _health: 100
-  _size: 0.5
-  _distance: 0.55
-  _ballSize: 1
-  _ballGrowth: 1
-  _force: 10
+  _size: 0.2
+  _distance: 0.225
+  _ballSize: 0.5
+  _ballGrowth: 0.5
+  _force: 5
   _damping: 0.2
   _frequency: 10
 --- !u!58 &3136205769425979236
@@ -73,7 +73,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.1
 --- !u!50 &2442688924331384108
 Rigidbody2D:
   serializedVersion: 4
@@ -157,10 +157,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5196589007941925086, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7733268739122074969, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
         type: 3}
       propertyPath: m_Name
       value: BlobSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733268739122074969, guid: c0ce4128a3dd3494e8d33d4a52ba58c5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0ce4128a3dd3494e8d33d4a52ba58c5, type: 3}
