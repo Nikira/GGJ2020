@@ -334,7 +334,7 @@ public class BlobController : MonoBehaviour
     {
         foreach (var joint in GetComponentsInChildren<SpringJoint2D>().Union(GetComponents<SpringJoint2D>()))
         {
-            DestroyImmediate(joint);
+            Destroy(joint);
         }
         var blobs = new Queue<BlobController>();
         var childless = new Queue<BlobController>();

@@ -27,7 +27,7 @@ public class WingInteractible : MonoBehaviour, IBlobInteractible
         var rigidBody = GetComponent<Rigidbody2D>();
         if (rigidBody)
         {
-            DestroyImmediate(rigidBody);
+            Destroy(rigidBody);
         }
         parent = other;
         picked = true;

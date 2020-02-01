@@ -28,12 +28,12 @@ public class LegInteractible : MonoBehaviour, IBlobInteractible
         var rigidBody = GetComponent<Rigidbody2D>();
         if (rigidBody)
         {
-            DestroyImmediate(rigidBody);
+            Destroy(rigidBody);
         }
         var collision = GetComponent<BoxCollider2D>();
         if (collision != null)
         {
-            DestroyImmediate(collision);
+            Destroy(collision);
         }
         parent = other;
         picked = true;
