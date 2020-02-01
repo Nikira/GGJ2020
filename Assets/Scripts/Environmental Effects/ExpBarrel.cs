@@ -19,8 +19,9 @@ public class ExpBarrel : MonoBehaviour
     // Explode if the blob touches it
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<BlobController>() != null)
+        if(collision.TryGetComponent(out BlobController blobController))
         {
+            blobController.Bisect();
             source.PlayOneShot(explosionSound);
             exploderReference.Explode();
             StartCoroutine(DestroyOnDelay());
