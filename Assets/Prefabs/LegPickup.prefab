@@ -72,7 +72,7 @@ MonoBehaviour:
   chaseTransform: {fileID: 1198592824713889055}
   force: -500
   offsetPos: {x: 0, y: 0, z: -10}
-  offsetAngle: {x: 0, y: 0, z: 3.4}
+  offsetAngle: {x: 0, y: 0, z: 45}
 --- !u!70 &1198592824543286493
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

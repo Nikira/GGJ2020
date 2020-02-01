@@ -6,6 +6,7 @@ public class Initializeblob : MonoBehaviour
 {
     public int blobs = 1;
     public BlobController controller;
+    public BlobController controller2;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class Initializeblob : MonoBehaviour
 
     void Update()
     {
+        
     }
 
 }
