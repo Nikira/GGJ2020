@@ -501,7 +501,7 @@ public class BlobController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 6.0f);
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 8.0f);
         }
     }
 }
