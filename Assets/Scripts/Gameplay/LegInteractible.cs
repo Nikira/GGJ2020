@@ -30,6 +30,11 @@ public class LegInteractible : MonoBehaviour, IBlobInteractible
         {
             DestroyImmediate(rigidBody);
         }
+        var collision = GetComponent<BoxCollider2D>();
+        if (collision != null)
+        {
+            DestroyImmediate(collision);
+        }
         parent = other;
         picked = true;
     }

@@ -14,6 +14,10 @@ public class BlobController : MonoBehaviour
 
     public GameObject item;
 
+    public string jumpButton = "Jump_P1";
+    public string horizontalCtrl = "Horizontal_P1";
+    public string fireButton = "Fire_P1";
+
     [SerializeField]
     List<BlobController> _children = new List<BlobController>();
 
@@ -484,17 +488,17 @@ public class BlobController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CanMove && Mathf.Abs(Input.GetAxis("Horizontal")) > 0.01f)
+        if (CanMove && Mathf.Abs(Input.GetAxis(horizontalCtrl)) > 0.01f)
         {
-            GetComponent<Rigidbody2D>().AddTorque(-Input.GetAxis("Horizontal") * force);
+            GetComponent<Rigidbody2D>().AddTorque(-Input.GetAxis(horizontalCtrl) * force);
         }
         if (item != null) {
             var component = item.GetComponent<IBlobInteractible>();
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown(fireButton))
             {
                 component.OnAction(this);
             }
-            else if (Input.GetButton("Fire1"))
+            else if (Input.GetButton(fireButton))
             {
                 component.OnHoldAction(this);
             }
@@ -505,9 +509,9 @@ public class BlobController : MonoBehaviour
             var val = ballSize + Mathf.Max(Level - 1, 0) * ballGrowth;
             model.localScale = new Vector3(val, val, val);
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown(jumpButton))
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 8.0f);
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 15.0f);
         }
     }
 }
