@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4487389509815470054}
   - component: {fileID: 8146358571628433399}
   - component: {fileID: 5196589007941925086}
-  m_Layer: 0
+  - component: {fileID: 8319513962312921595}
+  m_Layer: 11
   m_Name: BlobSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e20463e1312b8f43b99301c132f0122, type: 2}
+  - {fileID: 2100000, guid: 6763b9a2156c0984e9cc62df7c9dc85c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +80,15 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8319513962312921595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7733268739122074969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8ecaed8dc37f3419bb7f8bc00e8414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
