@@ -18,8 +18,6 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
     public AudioClip[] croakAudio;
     public AudioClip[] hopAudio;
 
-    SpriteRenderer renderer;
-
     bool flipped = false;
 
     // Start is called before the first frame update
@@ -29,8 +27,6 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
         frogSource = GetComponent<AudioSource>();
         StartCoroutine(FrogHopInterval());
         StartCoroutine(FrogCroakInterval());
-
-        renderer = GetComponent<SpriteRenderer>();
     }
 
     public void FrogHop()
@@ -39,11 +35,11 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
         // Flip sprite depending on direction of jump
         if(horizontalForce > 0)
         {
-            renderer.flipX = true;
+            flipped = true;
         }
         else
         {
-            renderer.flipX = false;
+            flipped = false;
         }
         FrogBody.AddForce(new Vector2(horizontalForce, Random.Range(2, 5)), ForceMode2D.Impulse);
         frogSource.PlayOneShot(hopAudio[(int)Random.Range (0, hopAudio.Length -1)]);
@@ -87,7 +83,15 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
         }
 
         yield return new WaitForSeconds(0.8f);
-        ChangeSprite(spriteStillRight);
+        if (flipped)
+        {
+            ChangeSprite(spriteStillRight);
+        }
+        else
+        {
+            ChangeSprite(spriteStillLeft);
+        }
+
     }
 
     public void ChangeSprite(Sprite _inputSprite)
