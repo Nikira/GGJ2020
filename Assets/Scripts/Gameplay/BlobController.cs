@@ -9,11 +9,17 @@ public class BlobController : MonoBehaviour
 
     private float holdTimer = 0f;
 
+    public Material material;
+
+    public Material dropMaterial;
+
     public GameObject blobPrefab;
 
     public Transform model;
     
     public BlobController parent;
+
+    public int layer;
 
     public GameObject item;
 
@@ -327,7 +333,19 @@ public class BlobController : MonoBehaviour
         this.horizontalCtrl = other.horizontalCtrl;
         this.fireButton = other.fireButton;
         this.jumpButton = other.jumpButton;
+        this.layer = other.layer;
+        this.material = other.material;
+        this.dropMaterial = other.dropMaterial;
 
+        gameObject.layer = layer;
+        foreach (Transform child in transform.GetComponentsInChildren<Transform>())
+        {
+            child.gameObject.layer = layer;
+        }
+        foreach (MeshRenderer renderer in transform.GetComponentsInChildren<MeshRenderer>())
+        {
+            renderer.material = material;
+        }
         transform.parent = other.transform;
     }
 
@@ -422,6 +440,11 @@ public class BlobController : MonoBehaviour
             while (blobs.Count > 0)
             {
                 var cur = blobs.Dequeue();
+                cur.gameObject.layer = 12;
+                foreach (var transform in cur.transform.GetComponentsInChildren<Transform>())
+                {
+                    transform.gameObject.layer = 12;
+                }
                 cur.children.ForEach(blob => {
                     var split = blob.gameObject.GetComponent<BlobSplitInteractible>();
                     if (split)
@@ -499,7 +522,7 @@ public class BlobController : MonoBehaviour
         split.enabled = false;
         blob.model = newModel.transform;
         
-        newObj.transform.localPosition = Random.insideUnitCircle.normalized;
+        newObj.transform.localPosition = Random.insideUnitCircle.normalized * size;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;
         AddChild(blob, createJoint);
     }
@@ -522,6 +545,8 @@ public class BlobController : MonoBehaviour
     void Start()
     {
         GetComponent<CircleCollider2D>().radius = size / 2f;
+        model.gameObject.layer = layer;
+        model.GetComponent<MeshRenderer>().material = material;
     }
 
     // Update is called once per frame
