@@ -132,7 +132,6 @@ public class BirdControllerScript : MonoBehaviour
         if(birdState > State.returning)
         {
             birdState = State.resting;
-            StateToSprite();
         
             foreach (GameObject bird in birds)
             {
@@ -144,7 +143,6 @@ public class BirdControllerScript : MonoBehaviour
         if (birdState != State.resting)
         {
             birdState++;
-            StateToSprite();
             StartCoroutine(StateIterator());
         }
         //Debug.Log("birdState:" + birdState);

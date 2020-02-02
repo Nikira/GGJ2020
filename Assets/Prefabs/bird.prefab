@@ -120,18 +120,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.07043803, y: 0.03270328}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.48}
+    oldSize: {x: 2.56, y: 1.92}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 2.0517652, y: 1.231665}
   m_EdgeRadius: 0
 --- !u!82 &2649716039287450811
 AudioSource:
@@ -245,8 +245,6 @@ MonoBehaviour:
   pickUp: {fileID: 8560444543348070981, guid: 4e642652088e84742ad80f1937822058, type: 3}
   pickedUp: 0
   isFlying: 0
-  restSprite: {fileID: 21300000, guid: fa0c19e761a4d5144a623ac84a3148ec, type: 3}
-  flapSprite: {fileID: 21300000, guid: 5476d19b758d08b488fe57ad90f965fd, type: 3}
 --- !u!61 &6885360825355310923
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -260,16 +258,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.10062575, y: 0.0075467825}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.48}
+    oldSize: {x: 2.56, y: 1.92}
     newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 2.2125163, y: 1.4930415}
   m_EdgeRadius: 0
