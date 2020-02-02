@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3136205769425979236}
   - component: {fileID: 2442688924331384108}
   - component: {fileID: 313896018902644338}
+  - component: {fileID: 7852933431208098901}
   m_Layer: 8
   m_Name: TheBlob
   m_TagString: Untagged
@@ -47,9 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119da8f300ef9e64fa2fbe7651bd644a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  material: {fileID: 0}
+  dropMaterial: {fileID: 0}
   blobPrefab: {fileID: 6621663661217807052}
   model: {fileID: 4487389509815470054, guid: c0ce4128a3dd3494e8d33d4a52ba58c5, type: 3}
   parent: {fileID: 0}
+  layer: 0
   item: {fileID: 0}
   jumpButton: Jump_P1
   horizontalCtrl: Horizontal_P1
@@ -113,6 +117,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+--- !u!114 &7852933431208098901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021472557928529177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f294321de6845ad458c72fdcf036d217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3510264497497370517
 PrefabInstance:
   m_ObjectHideFlags: 0

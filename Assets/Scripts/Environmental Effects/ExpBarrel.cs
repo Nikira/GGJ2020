@@ -8,6 +8,7 @@ public class ExpBarrel : MonoBehaviour
     Explosion exploderReference;
     public AudioClip explosionSound; // Initialized in inspector
     AudioSource source;
+    public bool destroyOnCollision = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,10 @@ public class ExpBarrel : MonoBehaviour
             blobController.Bisect();
             source.PlayOneShot(explosionSound);
             exploderReference.Explode();
-            StartCoroutine(DestroyOnDelay());
+            if (destroyOnCollision == true)
+            {
+                StartCoroutine(DestroyOnDelay());
+            }
         }
     }
 

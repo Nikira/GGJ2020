@@ -37,7 +37,7 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
 
     IEnumerator FrogCroakInterval()
     {
-        yield return new WaitForSeconds(Random.Range(5f, 12f));
+        yield return new WaitForSeconds(Random.Range(3f, 12f));
         frogSource.PlayOneShot(croakAudio[(int)Random.Range (0, croakAudio.Length -1)]);
         StartCoroutine(FrogCroakInterval());
     }
