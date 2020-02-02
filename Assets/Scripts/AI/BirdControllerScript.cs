@@ -75,6 +75,7 @@ public class BirdControllerScript : MonoBehaviour
     {
         if (collision.GetComponent<BlobController>() != null)
         {
+            if(birdState == State.resting)
             birdState = State.fleeing;
         }
     }
