@@ -2863,8 +2863,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 3219858944099609315}
   jumpSound: {fileID: 8300000, guid: f6f9d42831e862545b933e7b9fe5c5db, type: 3}
-  absorbSound: {fileID: 8300000, guid: 6eef41acdd2f62246b4911b76aa0f8e9, type: 3}
-  splitSound: {fileID: 8300000, guid: dc87dcfc4068bfc4ab31c8381359af9f, type: 3}
 --- !u!82 &1543456031
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3184,8 +3182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 3219858942882106249}
   jumpSound: {fileID: 8300000, guid: 740f9928e8a9c7248a42ab0482fb7cd1, type: 3}
-  absorbSound: {fileID: 0}
-  splitSound: {fileID: 0}
 --- !u!82 &1607405916
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7612,11 +7608,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5968031658217866254, guid: 9125e330f9eeb5d4d910621cf221a741,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7093238814854223285, guid: 9125e330f9eeb5d4d910621cf221a741,
         type: 3}

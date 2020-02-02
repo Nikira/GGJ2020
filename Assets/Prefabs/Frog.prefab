@@ -99,6 +99,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUp: {fileID: 1198592824543286467, guid: c1ed635dcaa6a0540927be86b36535da, type: 3}
   pickedUp: 0
+  spriteJumpRight: {fileID: 21300000, guid: c4ea423c1ce1c554bb73311de8c38a7e, type: 3}
+  spriteStillRight: {fileID: 21300000, guid: 5bba6167c2bd48442b5fdcdfca9604a2, type: 3}
+  spriteJumpLeft: {fileID: 21300000, guid: fb598728c29cc79429c82d52dcb6a0ad, type: 3}
+  spriteStillLeft: {fileID: 21300000, guid: 354b44f1d7bda584398509f32dafeb8b, type: 3}
   croakAudio:
   - {fileID: 8300000, guid: a9ce820f783ff8e4ea7b50608a9f9150, type: 3}
   - {fileID: 8300000, guid: b1e6df4c7573093459027b15ba21bc5c, type: 3}
