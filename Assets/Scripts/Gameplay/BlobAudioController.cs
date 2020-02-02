@@ -12,6 +12,8 @@ public class BlobAudioController : MonoBehaviour
 
     private AudioSource blobSource;
     public AudioClip jumpSound;
+    public AudioClip absorbSound;
+    public AudioClip splitSound;
 
     // Start is called before the first frame update
     void Start()
