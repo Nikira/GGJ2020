@@ -42,6 +42,11 @@ public class BirdBehaviourScript : MonoBehaviour, IBlobInteractible
         pickedUp = true;
     }
 
+    public void ChangeSprite(Sprite _inputSprite)
+    {
+        GetComponent<SpriteRenderer>().sprite = _inputSprite;
+    }
+
     public void OnAction(BlobController blob)
     {
 
