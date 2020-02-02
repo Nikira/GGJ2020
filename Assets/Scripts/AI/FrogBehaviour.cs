@@ -9,9 +9,18 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
     public GameObject pickUp;
     public bool pickedUp = false;
 
+    public Sprite spriteJumpRight;
+    public Sprite spriteStillRight;
+    public Sprite spriteJumpLeft;
+    public Sprite spriteStillLeft;
+
     private AudioSource frogSource;
     public AudioClip[] croakAudio;
     public AudioClip[] hopAudio;
+
+    SpriteRenderer renderer;
+
+    bool flipped = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,17 +29,30 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
         frogSource = GetComponent<AudioSource>();
         StartCoroutine(FrogHopInterval());
         StartCoroutine(FrogCroakInterval());
+
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     public void FrogHop()
     {
-        FrogBody.AddForce(new Vector2(Random.Range(-2, 2), Random.Range(0, 5)), ForceMode2D.Impulse);
+        float horizontalForce = Random.Range(-2, 2);
+        // Flip sprite depending on direction of jump
+        if(horizontalForce > 0)
+        {
+            renderer.flipX = true;
+        }
+        else
+        {
+            renderer.flipX = false;
+        }
+        FrogBody.AddForce(new Vector2(horizontalForce, Random.Range(2, 5)), ForceMode2D.Impulse);
         frogSource.PlayOneShot(hopAudio[(int)Random.Range (0, hopAudio.Length -1)]);
     }
 
     IEnumerator FrogHopInterval()
     {
         FrogHop();
+        StartCoroutine(HopSprite());
         yield return new WaitForSeconds(Random.Range(1f, 5f));
         StartCoroutine(FrogHopInterval());
     }
@@ -50,6 +72,27 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
 
         Destroy(gameObject);
         pickedUp = true;
+    }
+
+
+    IEnumerator HopSprite()
+    {
+        if(flipped)
+        {
+            ChangeSprite(spriteJumpRight);
+        }
+        else
+        {
+            ChangeSprite(spriteJumpLeft);
+        }
+
+        yield return new WaitForSeconds(0.8f);
+        ChangeSprite(spriteStillRight);
+    }
+
+    public void ChangeSprite(Sprite _inputSprite)
+    {
+        GetComponent<SpriteRenderer>().sprite = _inputSprite;
     }
 
     public void OnAction(BlobController blob)
