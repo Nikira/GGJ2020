@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8146358571628433399}
   - component: {fileID: 5196589007941925086}
   - component: {fileID: 8319513962312921595}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: BlobSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6763b9a2156c0984e9cc62df7c9dc85c, type: 2}
+  - {fileID: 2100000, guid: 5e20463e1312b8f43b99301c132f0122, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
