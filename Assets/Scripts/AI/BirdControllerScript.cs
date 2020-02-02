@@ -12,7 +12,6 @@ public class BirdControllerScript : MonoBehaviour
     public enum State { resting, fleeing, hovering, returning }
     public State birdState = State.resting;
 
-
     [Header("Forces applied during different states")]
     public float fleeForce = 1.8f;
     public float returnForce = 2f;
@@ -20,6 +19,7 @@ public class BirdControllerScript : MonoBehaviour
 
     Vector2 fleeDirection;
     Vector2 returnDirection;
+
 
     public AudioClip[] tweets;
     public AudioClip[] audioFlutter;
@@ -49,6 +49,7 @@ public class BirdControllerScript : MonoBehaviour
         switch(birdState)
         {
             case State.resting:
+                BirdsReturn(); // I put this here to have them "walk" back after they land
                 break;
             case State.fleeing:
                 BirdsFlee();
@@ -61,6 +62,14 @@ public class BirdControllerScript : MonoBehaviour
             case State.returning:
                 BirdsReturn();
                 break;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.GetComponent<BlobController>() != null)
+        {
+            birdState = State.fleeing;
         }
     }
 

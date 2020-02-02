@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Wind : MonoBehaviour
 {
 
@@ -9,17 +10,24 @@ public class Wind : MonoBehaviour
     public WindDirection selectedDirection = WindDirection.north;
     Vector2 direction;
     public float windForce = 5f;
+    SpriteRenderer renderer;
+    float currentScroll = 0;
+    public float scrollSpeed = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         direction = new Vector2();
+        renderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         WindBlow();
+
+        //currentScroll += scrollSpeed * Time.deltaTime;
+        //renderer. = new Vector2(currentscroll, 0);
     }
 
     public void OnTriggerStay2D(Collider2D collision)

@@ -7,6 +7,8 @@ public class BlobController : MonoBehaviour
 {
     private bool bisected = false;
 
+    private bool pulse = false;
+
     private float holdTimer = 0f;
 
     public Material material;
@@ -504,6 +506,7 @@ public class BlobController : MonoBehaviour
 
     public void CreateBlob(bool createJoint = true)
     {
+        Debug.Log($"{gameObject.name}{transform.position}");
         if (this.IsFull)
         {
             int min = children.Min(child => child.Count);
@@ -522,9 +525,14 @@ public class BlobController : MonoBehaviour
         split.enabled = false;
         blob.model = newModel.transform;
         
-        newObj.transform.localPosition = Random.insideUnitCircle.normalized * size;
+        Debug.Log($"{newObj.name}{newObj.transform.position}");
+        collider.sharedMaterial = GetComponent<CircleCollider2D>().sharedMaterial;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;
+        body.interpolation = GetComponent<Rigidbody2D>().interpolation;
+        body.isKinematic = GetComponent<Rigidbody2D>().isKinematic;
+        body.collisionDetectionMode = GetComponent<Rigidbody2D>().collisionDetectionMode;
         AddChild(blob, createJoint);
+        newObj.transform.localPosition = new Vector3(Random.Range(-1f, 1f) * size, size, 0f);
     }
 
     public override bool Equals(object other)
@@ -567,6 +575,10 @@ public class BlobController : MonoBehaviour
                 component.OnHoldAction(this);
             }
         }
+        /*
+        var collider = GetComponent<CircleCollider2D>();
+        collider.radius = size / 2f  + (pulse ? Time.deltaTime : -Time.deltaTime);
+        pulse = !pulse;*/
 
         if (parent == null)
         {
