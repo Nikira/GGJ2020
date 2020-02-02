@@ -11,6 +11,9 @@ public class BirdBehaviourScript : MonoBehaviour, IBlobInteractible
 
     public bool isFlying = false;
 
+    public Sprite restSprite;
+    public Sprite flapSprite;
+
     public void OnDestroy()
     {
         parentController.birds.Remove(this.gameObject);
@@ -40,6 +43,11 @@ public class BirdBehaviourScript : MonoBehaviour, IBlobInteractible
 
         Destroy(gameObject);
         pickedUp = true;
+    }
+
+    public void ChangeSprite(Sprite _inputSprite)
+    {
+        GetComponent<SpriteRenderer>().sprite = _inputSprite;
     }
 
     public void OnAction(BlobController blob)
