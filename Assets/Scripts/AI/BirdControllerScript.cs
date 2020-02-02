@@ -20,6 +20,9 @@ public class BirdControllerScript : MonoBehaviour
     Vector2 fleeDirection;
     Vector2 returnDirection;
 
+    public Sprite spriteRest;
+    public Sprite spriteFlap;
+    public Sprite spriteFly;
 
     public AudioClip[] tweets;
     public AudioClip[] audioFlutter;
@@ -50,6 +53,7 @@ public class BirdControllerScript : MonoBehaviour
         {
             case State.resting:
                 BirdsReturn(); // I put this here to have them "walk" back after they land
+                LoadSprite(spriteRest);
                 break;
             case State.fleeing:
                 BirdsFlee();
@@ -63,6 +67,8 @@ public class BirdControllerScript : MonoBehaviour
                 BirdsReturn();
                 break;
         }
+
+        StateToSprite(); // Don't think this is optimal at all, comment this out if it causes any problems with framerate
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -84,6 +90,7 @@ public class BirdControllerScript : MonoBehaviour
             returnDirection.Normalize();
             Debug.DrawLine(bird.transform.position, returnDirection);
             birdBody.AddForce(returnDirection * returnForce * (DistanceToController(bird.transform.position)*0.5f));
+            bird.GetComponent<BirdBehaviourScript>().ChangeSprite(spriteRest);
         }
     }
 
@@ -96,8 +103,10 @@ public class BirdControllerScript : MonoBehaviour
             // Apply random physics force
             fleeDirection.x = Random.Range(-6, 6);
 
+            BirdBehaviourScript tempRef = bird.GetComponent<BirdBehaviourScript>();
+
             birdBody.AddForce(fleeDirection * fleeForce, ForceMode2D.Impulse);
-            bird.GetComponent<BirdBehaviourScript>().EmitSound(audioFlutter[(int)Random.Range (0, audioFlutter.Length -1)], bird.GetComponent<AudioSource>());
+            tempRef.EmitSound(audioFlutter[(int)Random.Range (0, audioFlutter.Length -1)], bird.GetComponent<AudioSource>());
         }
     }
 
@@ -123,21 +132,24 @@ public class BirdControllerScript : MonoBehaviour
         if(birdState > State.returning)
         {
             birdState = State.resting;
+            StateToSprite();
         
-        foreach (GameObject bird in birds)
-        {
-            bird.GetComponent<BirdBehaviourScript>().isFlying = true;
-        }
-
+            foreach (GameObject bird in birds)
+            {
+                bird.GetComponent<BirdBehaviourScript>().isFlying = true;
+            }
         }
 
         yield return new WaitForSeconds(3f);
         if (birdState != State.resting)
         {
             birdState++;
+            StateToSprite();
             StartCoroutine(StateIterator());
         }
-        Debug.Log("birdState:" + birdState);
+        //Debug.Log("birdState:" + birdState);
+
+
     }
 
     // Apply upwards force at given interval
@@ -158,5 +170,31 @@ public class BirdControllerScript : MonoBehaviour
         if (birdState == State.resting)
         GetComponent<AudioSource>().PlayOneShot(tweets[(int)Random.Range (0, tweets.Length -1)]);
         StartCoroutine(RandomTweets());
+    }
+
+    public void LoadSprite(Sprite _inputSprite)
+    {
+        foreach(GameObject bird in birds)
+        {
+            bird.GetComponent<BirdBehaviourScript>().ChangeSprite(_inputSprite);
+        }
+    }
+
+    public void StateToSprite()
+    {
+        switch (birdState)
+        {
+            case State.resting:
+                LoadSprite(spriteRest);
+                break;
+            case State.fleeing:
+                break;
+            case State.hovering:
+                LoadSprite(spriteFlap);
+                break;
+            case State.returning:
+                LoadSprite(spriteFly);
+                break;
+        }
     }
 }
