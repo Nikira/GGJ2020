@@ -7,6 +7,8 @@ public class BlobController : MonoBehaviour
 {
     private bool bisected = false;
 
+    private bool pulse = false;
+
     private float holdTimer = 0f;
 
     public Material material;
@@ -523,6 +525,7 @@ public class BlobController : MonoBehaviour
         blob.model = newModel.transform;
         
         newObj.transform.localPosition = Random.insideUnitCircle.normalized * size;
+        collider.sharedMaterial = GetComponent<CircleCollider2D>().sharedMaterial;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;
         AddChild(blob, createJoint);
     }
@@ -567,6 +570,10 @@ public class BlobController : MonoBehaviour
                 component.OnHoldAction(this);
             }
         }
+
+        var collider = GetComponent<CircleCollider2D>();
+        collider.radius = size / 2f  + (pulse ? Time.deltaTime : -Time.deltaTime);
+        pulse = !pulse;
 
         if (parent == null)
         {

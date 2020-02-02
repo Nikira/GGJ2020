@@ -59,8 +59,8 @@ MonoBehaviour:
   fireButton: Fire1_P1
   _children: []
   _health: 100
-  _size: 0.2
-  _distance: 0.225
+  _size: 0.3
+  _distance: 0.325
   _ballSize: 0.5
   _ballGrowth: 0.5
   _force: 5
