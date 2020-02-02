@@ -7,5 +7,5 @@ PhysicsMaterial2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LegMaterial
-  friction: 10
+  friction: 23.64
   bounciness: 0.1
