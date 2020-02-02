@@ -528,6 +528,9 @@ public class BlobController : MonoBehaviour
         Debug.Log($"{newObj.name}{newObj.transform.position}");
         collider.sharedMaterial = GetComponent<CircleCollider2D>().sharedMaterial;
         body.sharedMaterial = GetComponent<Rigidbody2D>().sharedMaterial;
+        body.interpolation = GetComponent<Rigidbody2D>().interpolation;
+        body.isKinematic = GetComponent<Rigidbody2D>().isKinematic;
+        body.collisionDetectionMode = GetComponent<Rigidbody2D>().collisionDetectionMode;
         AddChild(blob, createJoint);
         newObj.transform.localPosition = new Vector3(Random.Range(-1f, 1f) * size, size, 0f);
     }
@@ -572,10 +575,10 @@ public class BlobController : MonoBehaviour
                 component.OnHoldAction(this);
             }
         }
-
+        /*
         var collider = GetComponent<CircleCollider2D>();
         collider.radius = size / 2f  + (pulse ? Time.deltaTime : -Time.deltaTime);
-        pulse = !pulse;
+        pulse = !pulse;*/
 
         if (parent == null)
         {
