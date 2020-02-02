@@ -9,16 +9,23 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
     public GameObject pickUp;
     public bool pickedUp = false;
 
+    private AudioSource frogSource;
+    public AudioClip[] croakAudio;
+    public AudioClip[] hopAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         FrogBody = GetComponent<Rigidbody2D>();
+        frogSource = GetComponent<AudioSource>();
         StartCoroutine(FrogHopInterval());
+        StartCoroutine(FrogCroakInterval());
     }
 
     public void FrogHop()
     {
         FrogBody.AddForce(new Vector2(Random.Range(-2, 2), Random.Range(0, 5)), ForceMode2D.Impulse);
+        frogSource.PlayOneShot(hopAudio[(int)Random.Range (0, hopAudio.Length -1)]);
     }
 
     IEnumerator FrogHopInterval()
@@ -26,6 +33,13 @@ public class FrogBehaviour : MonoBehaviour, IBlobInteractible
         FrogHop();
         yield return new WaitForSeconds(Random.Range(1f, 5f));
         StartCoroutine(FrogHopInterval());
+    }
+
+    IEnumerator FrogCroakInterval()
+    {
+        yield return new WaitForSeconds(Random.Range(5f, 12f));
+        frogSource.PlayOneShot(croakAudio[(int)Random.Range (0, croakAudio.Length -1)]);
+        StartCoroutine(FrogCroakInterval());
     }
 
     public void OnCollideWithBlob(BlobController blob)
