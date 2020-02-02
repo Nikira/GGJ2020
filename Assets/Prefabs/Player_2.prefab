@@ -61,8 +61,8 @@ MonoBehaviour:
   _health: 100
   _size: 0.3
   _distance: 0.325
-  _ballSize: 0.5
-  _ballGrowth: 0.5
+  _ballSize: 0.75
+  _ballGrowth: 0.25
   _force: 5
   _damping: 0.2
   _frequency: 10

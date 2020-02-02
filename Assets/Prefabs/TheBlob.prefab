@@ -62,8 +62,8 @@ MonoBehaviour:
   _health: 100
   _size: 0.2
   _distance: 0.225
-  _ballSize: 0.5
-  _ballGrowth: 0.5
+  _ballSize: 0.75
+  _ballGrowth: 0.25
   _force: 5
   _damping: 0.2
   _frequency: 10
@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f294321de6845ad458c72fdcf036d217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  jumpSound: {fileID: 0}
 --- !u!1001 &3510264497497370517
 PrefabInstance:
   m_ObjectHideFlags: 0
